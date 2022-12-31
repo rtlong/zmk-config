@@ -103,7 +103,7 @@ jobs:
 
       - name: Find preprocessor output files
         if: ${{ failure() }}
-        run: find . -name '*.i'
+        run: find ${GITHUB_WORKSPACE}/${{ inputs.config_path }}
       - name: Archive preprocessor output files (${{ env.display_name }})
         if: ${{ failure() }}
         uses: actions/upload-artifact@v3
