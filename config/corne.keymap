@@ -15,7 +15,7 @@
 
 // key aliases to keep keymap layout neater
 #define CT(x) &cmd_hold LG(x) x
-#define AT(x) &cmd_hold LA(x) x
+#define OT(x) &cmd_hold LA(x) x
 
 #define MEH      LA(LC(LSHIFT))
 #define PREV_TAB LC(LS(TAB))
@@ -132,7 +132,7 @@
 //       ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
 <&none     ESC_FQUIT     &none         &none         &none         Q_H               &kp BACK      &kp PREV_TAB  &kp NEXT_TAB  &kp FORWARD   &trans        &none >,
 //       ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-<&none     CT(TAB)       &none         &none         &none         DEL_CTR_K         AT(LEFT)      DOWN          UP            AT(RIGHT)     &trans        &none >,
+<&none     CT(TAB)       &none         &none         &none         DEL_CTR_K         OT(LEFT)      DOWN          UP            OT(RIGHT)     &trans        &none >,
 //       ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 <&none     CT(GRAVE)     &none         &none         &none         SPC_OPEN          &none         &none         &none         &none         &none         &none >,
 //       ╰─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────╯
