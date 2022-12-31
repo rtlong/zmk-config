@@ -2,7 +2,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-#define CT(x) &ht_tp LG(x) x;
+#define CT(x) &cmd_hold LG(x) x;
 #define MEH LA(LC(LSHIFT));
 
 &mt {
@@ -28,15 +28,26 @@
     };
 
     behaviors {
-        // tt: tip_tap {
-        //     compatible = "zmk,behavior-hold-tap";
-        //     label = "TIP_TAP";
-        //     #binding-cells = <2>;
-        //     tapping-term-ms = <125>;
-        //     quick-tap-ms = <0>;
-        //     flavor = "tap-preferred";
-        //     bindings = <&sl>, <&sk>;
-        // };
+        ht_tp: hold_tap_tap_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_TP";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        cmd_hold: command_hold {
+            compatible = "zmk,behavior-hold-tap";
+            label = "CMD_HOLD";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
         td_spc: tap_dance_space {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_SPC";
@@ -44,29 +55,29 @@
             tapping-term-ms = <200>;
             bindings = <&ht_tp LCMD SPACE>, <&ht_tp LG(SPACE) &space_space>;
         };
+
         td_q: tap_dance_esc {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_Q";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <CT(Q)>, <&kp ESC>;
+            bindings = <&cmd_hold LG(Q) Q>, <&kp ESC>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
         default_layer {
-            bindings = <
+            bindings = \
       // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-   &trans    &td_q          CT(W)         CT(F)         CT(P)        CT(B)             CT(J)          CT(L)        CT(U)          CT(Y)        CT(BSPC)        &trans
+   <&trans    &td_q          CT(W)         CT(F)         CT(P)        CT(B)             CT(J)          CT(L)        CT(U)          CT(Y)        CT(BSPC)        &trans>,
       // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-   &trans    CT(A)          CT(R)         CT(S)         CT(T)        CT(G)             CT(M)          CT(N)        CT(E)          CT(I)         CT(O)          &trans
+   <&trans    CT(A)          CT(R)         CT(S)         CT(T)        CT(G)             CT(M)          CT(N)        CT(E)          CT(I)         CT(O)          &trans>,
       // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-   &trans    CT(Z)          CT(X)         CT(C)         CT(D)        CT(V)             CT(K)          CT(H)        CT(COMMA)     CT(DOT)       CT(FSLH)        &trans
+   <&trans    CT(Z)          CT(X)         CT(C)         CT(D)        CT(V)             CT(K)          CT(H)        CT(COMMA)     CT(DOT)       CT(FSLH)        &trans>,
       // ╰─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────╯
-                                          &kp MEH      &td_spc     &sk LSHIFT         &sk LALT       &sl 1        &sk RCTRL
+                                          <&kp MEH      &td_spc     &sk LSHIFT         &sk LALT       &sl 1        &sk RCTRL>;
       //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
-            >;
         };
         numpad_layer {
             bindings = <
@@ -81,18 +92,18 @@
       //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
             >;
         };
-        media_layer {
-            bindings = <
-      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-   &trans    &kp N1        &kp N2        &kp ESC       &kp N3       &kp N4          &bt BT_SEL 1  &bt BT_SEL 2   &kp C_MUTE   &bt BT_SEL 3   &bt BT_CLR         &trans
-      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-   &trans    &kp M         &kp Q         &kp W         &kp E        &td0                &kp TAB      &none       &kp C_VOL_UP     &none        &none            &trans
-      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-   &trans    &kp Z         &kp A         &kp S         &kp D        &kp F               &none        &kp LEFT    &kp C_VOL_DN    &kp RIGHT     &none            &trans
-      // ╰─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────╯
-                                         &mt B C       &mt LALT V   &kp SPACE           &kp BSPC      &to 0       &trans
-      //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
-            >;
-        };
+//         media_layer {
+//             bindings = <
+//       // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+//    &trans    &kp N1        &kp N2        &kp ESC       &kp N3       &kp N4          &bt BT_SEL 1  &bt BT_SEL 2   &kp C_MUTE   &bt BT_SEL 3   &bt BT_CLR         &trans
+//       // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+//    &trans    &kp M         &kp Q         &kp W         &kp E        &td0                &kp TAB      &none       &kp C_VOL_UP     &none        &none            &trans
+//       // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+//    &trans    &kp Z         &kp A         &kp S         &kp D        &kp F               &none        &kp LEFT    &kp C_VOL_DN    &kp RIGHT     &none            &trans
+//       // ╰─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────╯
+//                                          &mt B C       &mt LALT V   &kp SPACE           &kp BSPC      &to 0       &trans
+//       //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+//             >;
+//         };
     };
 };
