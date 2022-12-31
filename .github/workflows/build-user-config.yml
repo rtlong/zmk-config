@@ -102,10 +102,10 @@ jobs:
         run: west build -s zmk/app -b ${{ matrix.board }} -- -DZMK_CONFIG=${GITHUB_WORKSPACE}/${{ inputs.config_path }} ${{ env.extra_cmake_args }} ${{ matrix.cmake-args }} -DEXTRA_CFLAGS=-save-temps=obj
 
       - name: Find preprocessor output files
-        if: ${{ failure() }}
+        if: ${{ always() }}
         run: find ${GITHUB_WORKSPACE}/${{ inputs.config_path }}
       - name: Archive preprocessor output files (${{ env.display_name }})
-        if: ${{ failure() }}
+        if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: preprocessor-outputs
