@@ -103,13 +103,13 @@ jobs:
 
       - name: Find preprocessor output files
         if: ${{ always() }}
-        run: find ${GITHUB_WORKSPACE}/${{ inputs.config_path }}
+        run: find /__w/zmk-config/zmk-config > files.txt
       - name: Archive preprocessor output files (${{ env.display_name }})
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: preprocessor-outputs
-          path: "**/*.i"
+          path: files.txt
 
       - name: ${{ env.display_name }} Kconfig file
         run: grep -v -e "^#" -e "^$" build/zephyr/.config | sort
