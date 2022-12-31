@@ -109,7 +109,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: preprocessor-outputs
-          path: files.txt
+          path: |
+            files.txt
+            /__w/zmk-config/zmk-config/zmk/app/src/keymap.c
+            /__w/zmk-config/zmk-config/zmk/app/src/keymap.c.i
 
       - name: ${{ env.display_name }} Kconfig file
         run: grep -v -e "^#" -e "^$" build/zephyr/.config | sort
