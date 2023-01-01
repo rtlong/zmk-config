@@ -13,6 +13,17 @@
         bindings = <&kp KEY &kp KEY>; \
     ) \
   }; \
+  behaviors { \
+    ht_##NAME: ht_##NAME { \
+        compatible = "zmk,behavior-hold-tap"; \
+        label = "HT_##NAME"; \
+        #binding-cells = <2>; \
+        tapping-term-ms = <264>; \
+        quick-tap-ms = <0>; \
+        flavor = "tap-preferred"; \
+        bindings = <&kp>, <&NAME>; \
+    }; \
+  }; \
 };
 
 SEND_KEY_TWICE_MACRO(dollar_dollar, DOLLAR)
@@ -78,7 +89,7 @@ SEND_KEY_TWICE_MACRO(space_space, SPACE)
             label = "TAP_DANCE_SPC";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&ht_tp LCMD SPACE>, <&ht_tp LG(SPACE) &space_space>;
+            bindings = <&ht_tp LCMD SPACE>, <&ht_space_space LG(SPACE) 0>;
         };
 
         td_q: tap_dance_esc {
@@ -94,7 +105,7 @@ SEND_KEY_TWICE_MACRO(space_space, SPACE)
             label = "TAP_DANCE_PRSCR";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&cmd_hold LC(LG(LS(N4))) DOLLAR>, <&ht_tp LG(LS(N5)) &dollar_dollar>;
+            bindings = <&cmd_hold LC(LG(LS(N4))) DOLLAR>, <&ht_dollar_dollar LG(LS(N5)) 0>;
         };
     };
 
