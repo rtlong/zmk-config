@@ -97,7 +97,7 @@ SEND_KEY_TWICE_MACRO(space_space, SPACE)
             label = "TAP_DANCE_Q";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&cmd_hold LG(Q) Q>, <&kp ESC>;
+            bindings = <&kp Q>, <&cmd_hold LG(Q) ESC>;
         };
 
         td_prscr: tap_dance_screenshot {
