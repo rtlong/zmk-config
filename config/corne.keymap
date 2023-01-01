@@ -26,7 +26,9 @@
   }; \
 };
 
+// FIXME: &ht_dollar_dollar is sending SPACE instead of DOLLAR
 SEND_KEY_TWICE_MACRO(dollar_dollar, DOLLAR)
+
 SEND_KEY_TWICE_MACRO(space_space, SPACE)
 
 // key aliases to keep keymap layout neater
