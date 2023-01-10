@@ -2,7 +2,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-
+#define TAPPING_TERM TAPPING_TERM // number from my ZSA config (shocking how a few tens of ms can make a difference!)
 
 #define SEND_KEY_TWICE_MACRO(NAME, KEY) \
 / { \
@@ -18,7 +18,7 @@
         compatible = "zmk,behavior-hold-tap"; \
         label = "HT_##NAME"; \
         #binding-cells = <2>; \
-        tapping-term-ms = <264>; \
+        tapping-term-ms = <TAPPING_TERM>; \
         quick-tap-ms = <0>; \
         flavor = "tap-preferred"; \
         bindings = <&kp>, <&NAME>; \
@@ -55,10 +55,10 @@ SEND_KEY_TWICE_MACRO(space_space, SPACE)
 #define HARDWARE 4
 
 &mt {
-    tapping-term-ms = <300>;
+    tapping-term-ms = <TAPPING_TERM>;
 };
 &lt {
-    tapping-term-ms = <300>;
+    tapping-term-ms = <TAPPING_TERM>;
 };
 &sk {
     quick-release;
@@ -70,7 +70,7 @@ SEND_KEY_TWICE_MACRO(space_space, SPACE)
             compatible = "zmk,behavior-hold-tap";
             label = "HT_TP";
             #binding-cells = <2>;
-            tapping-term-ms = <264>;
+            tapping-term-ms = <TAPPING_TERM>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
@@ -80,7 +80,7 @@ SEND_KEY_TWICE_MACRO(space_space, SPACE)
             compatible = "zmk,behavior-hold-tap";
             label = "CMD_HOLD";
             #binding-cells = <2>;
-            tapping-term-ms = <264>;
+            tapping-term-ms = <TAPPING_TERM>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
@@ -90,7 +90,7 @@ SEND_KEY_TWICE_MACRO(space_space, SPACE)
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_SPC";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <TAPPING_TERM>;
             bindings = <&ht_tp LCMD SPACE>, <&ht_space_space LG(SPACE) 0>;
         };
 
@@ -98,7 +98,7 @@ SEND_KEY_TWICE_MACRO(space_space, SPACE)
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_Q";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <TAPPING_TERM>;
             bindings = <&kp Q>, <&cmd_hold LG(Q) ESC>;
         };
 
@@ -106,7 +106,7 @@ SEND_KEY_TWICE_MACRO(space_space, SPACE)
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_PRSCR";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <TAPPING_TERM>;
             bindings = <&cmd_hold LC(LG(LS(N4))) DOLLAR>, <&ht_dollar_dollar LG(LS(N5)) 0>;
         };
     };
