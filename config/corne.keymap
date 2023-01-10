@@ -2,7 +2,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-#define TAPPING_TERM TAPPING_TERM // number from my ZSA config (shocking how a few tens of ms can make a difference!)
+#define TAPPING_TERM 264 // number from my ZSA config (shocking how a few tens of ms can make a difference!)
 
 #define SEND_KEY_TWICE_MACRO(NAME, KEY) \
 / { \
