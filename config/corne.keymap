@@ -133,7 +133,7 @@ SEND_KEY_TWICE_MACRO(space_space, SPACE)
 //       ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 <&none     &kp TAB       &kp UNDER     CT(MINUS)     CT(SQT)       &kp GRAVE         BSLH_HOME     CT(LBRC)      CT(RBRC)      PIPE_END      CT(ENTER)     &none >,
 //       ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-<&none     &kp TILDE     &kp EQUAL     &kp EXCL      &kp DQT       CT(PLUS)          CT(LBKT)      &kp LPAR      &kp RPAR      CT(RBKT)      &sl NAVIGATE  &none >,
+<&none     &kp TILDE     &kp EQUAL     &kp EXCL      &kp DQT       CT(PLUS)          CT(LBKT)      &kp LPAR      &kp RPAR      CT(RBKT)      &to NAVIGATE  &none >,
 //       ╰─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────╯
 <                                      &to 0         &sk LCMD      &trans            &trans        &to NUMBERS   &trans        >;
 //                                   ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
